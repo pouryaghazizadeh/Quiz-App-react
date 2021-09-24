@@ -1,22 +1,36 @@
 // import React from 'react'
 
 type props = {
-    question: string;
-    answer:string[ ];
+     question: string;
+    answer:string[];
     callback:any;
-    userAnswer:string;
+    userAnswer:any;
     questionNr:number;
     totalQuestions:number
 }
 
 
-const QuiestionCard:React.FC()=> {
+const QuiestionCard:React.FC<props> =({question,answer,callback,userAnswer,questionNr,totalQuestions})=> {
     return (
         <div>
+            <p className="number">
+                {questionNr}/{totalQuestions}
+            </p>
+            <p dangerouslySetInnerHTML={{__html:question}}></p>
+            <div>
+                {answer.map((answer)=>{
+                    <div>
+                        {/* <button disabled={answer} onClick={callback}> */}
+                            <span dangerouslySetInnerHTML={{__html:answer}}/>
+                        {/* </button> */}
+                    </div>
+                     
+                })}
+            </div>
 
 
             
-        </div>
+        </div> 
     )
 }
 
