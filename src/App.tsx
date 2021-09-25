@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Difficulty, fechQuizQuestions, QuestionState } from "./components/API";
-import QuiestionCard from "./components/QuiestionCard"
+import QuiestionCard from "./components/QuiestionCard";
 const TOTAL_QUESTIONS = 10
 
-type AnsewerObject={
+export type AnsewerObject={
   question:string;
   answer:string;
   correct:boolean;
@@ -20,7 +20,7 @@ console.log(fechQuizQuestions(TOTAL_QUESTIONS,Difficulty.EASY));
 const [loading,setLoading]=useState(false)
 const [questions,setQuestions]=useState<QuestionState[]>([])
 const[number,setNumber]=useState(0)
-const[userAnswers,setUserAnswers]=useState< AnsewerObject[ ]>([])
+const[userAnswers,setUserAnswers]=useState< AnsewerObject[]>([])
 const[score,setScore]=useState(0)
 const[gameOver,setGAmeOver]=useState(true)
 
@@ -35,24 +35,42 @@ const newQestions = await fechQuizQuestions(
   TOTAL_QUESTIONS,
   Difficulty.EASY
 )
-setQuestions(newQestions)
-setScore(0)
-setUserAnswers([])
-setNumber(0)
-setLoading(false)
+  setQuestions(newQestions)
+  setScore(0)
+  setUserAnswers([])
+  setNumber(0)
+  setLoading(false)
   }
   const checkAnswer =(e: React.MouseEvent<HTMLButtonElement>)=>{
     if(!gameOver){
       // userAnsers
       const answer = e.currentTarget.value;
-      // check answer against
+      // check answer against correct value
+      const correct =questions[number].correct_answers ===answer 
+      //add score if answer is correct 
+      if(correct) setScore(prev =>prev+1)
+      // save answer in the array for userAnswers
+      const answerObject={
+        question:questions[number].question,
+        // we use es6 so we can write answer Instead answer :answer
+        answer,
+        correct, 
+        correctAnswer:questions[number].correct_answers
+      }
+      setUserAnswers(prev =>[...prev,answerObject])
 
-    }
-
-  }
+  }}
   const nextQuestions = ()=>{
-
+    //monve on to next questions if not the last questions 
+const nextQuestions = number+1
+    if(nextQuestions===TOTAL_QUESTIONS){
+      setGAmeOver(true)
+    }else{
+      setNumber(nextQuestions)
+    }
   }
+
+
   return (
     <div className="App">
 
@@ -60,14 +78,14 @@ setLoading(false)
       <h1>React QUIZ</h1>
       {gameOver || userAnswers.length === TOTAL_QUESTIONS?(
         <button className="start" onClick={startTrivia}>start</button>):null}
-      {gameOver?<p className="score">score:</p>:null}
+      {gameOver?<p className="score">score:{score}</p>:null}
       {loading && <p>Loading questions...</p>}
       {!loading && !gameOver &&(
       <QuiestionCard
       questionNr={number+1}
       totalQuestions={TOTAL_QUESTIONS}
       question={questions[number].question}
-      answer={questions[number].answer}
+      answers={questions[number].answer}
       userAnswer={userAnswers?userAnswers[number]:undefined}
       callback={checkAnswer}
       />
