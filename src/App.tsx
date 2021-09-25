@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { Difficulty, fechQuizQuestions, QuestionState } from "./components/API";
+// style
+import { GlobalStyle ,Wrapper } from "./App.style";
+import { Difficulty, fechQuizQuestions, QuestionState } from "./API";
 import QuiestionCard from "./components/QuiestionCard";
+
 const TOTAL_QUESTIONS = 10
 
 export type AnsewerObject={
@@ -72,7 +75,8 @@ const nextQuestions = number+1
 
 
   return (
-    <div className="App">
+    <>
+    <Wrapper >
 
 
       <h1>React QUIZ</h1>
@@ -94,7 +98,9 @@ const nextQuestions = number+1
         !loading && !gameOver && userAnswers.length +1 && number !== TOTAL_QUESTIONS -1 ?(<button className="next" onClick={nextQuestions}>Next Question</button>)
       :null}
       
-    </div>
+    </Wrapper>
+    <GlobalStyle/>
+    </>
   );
 }
 
