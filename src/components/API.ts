@@ -1,5 +1,5 @@
-import { queries } from "@testing-library/dom"
-import { type } from "os"
+// import { queries } from "@testing-library/dom"
+// import { type } from "os"
 
 import { shuffleArray } from "./utils"
 export type Question={
