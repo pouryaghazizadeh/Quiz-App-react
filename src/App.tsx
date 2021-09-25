@@ -4,17 +4,25 @@ import QuiestionCard from "./components/QuiestionCard"
 
 import { fechQuizQuestions } from "./components/API"
 // types
-import { Difficulty } from "./components/API"
+import {QuestionState , Difficulty } from "./components/API"
 const TOTAL_QUESTIONS = 10
+
+type AnsewerObject={
+  question:string;
+  answer:string;
+  correct:boolean;
+  correctAnswer:string
+
+}
 function App() {
 console.log(fechQuizQuestions(TOTAL_QUESTIONS,Difficulty.EASY));
 
 
 
  
-
+ 
   const [loading,setLoadin]=useState(false)
-  const [questions,setQuestions]=useState([])
+  const [questions,setQuestions]=useState<QuestionState[]>([])
   const[number,setNumber]=useState(0)
   const[userAnswers,setUserAnswers]=useState([])
   const[score,setScore]=useState(0)
