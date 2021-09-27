@@ -4,15 +4,16 @@ import { GlobalStyle ,Wrapper } from "./App.style";
 import { Difficulty, fechQuizQuestions, QuestionState } from "./API";
 import QuiestionCard from "./components/QuiestionCard";
 
-const TOTAL_QUESTIONS = 10
 
 export type AnsewerObject={
   question:string;
   answer:string;
   correct:boolean;
   correctAnswer:string
-
+  
 }
+const TOTAL_QUESTIONS = 10
+
 function App() {
 console.log(fechQuizQuestions(TOTAL_QUESTIONS,Difficulty.EASY));
 
@@ -28,7 +29,7 @@ const[score,setScore]=useState(0)
 const[gameOver,setGAmeOver]=useState(true)
 
 
-console.log(questions); 
+// console.log(questions); 
 
 
   const startTrivia = async()=>{

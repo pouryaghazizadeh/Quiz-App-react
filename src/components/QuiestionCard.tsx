@@ -1,9 +1,9 @@
 
 import React from 'react'
-// style
-import { Wrapper, ButtonWrapper } from "./QuiestionCard.style"
 // types
 import { AnsewerObject } from "../App"
+// style
+import { ButtonWrapper, Wrapper } from "./QuiestionCard.style"
 type props = {
      question: string;
     answers:string[];
@@ -18,9 +18,9 @@ const QuiestionCard:React.FC<props> =({question,answers,callback,userAnswer,ques
     return (
         <Wrapper>
             <p className="number">
-                {questionNr}/{totalQuestions}
+            Question:  {questionNr}/{totalQuestions}
             </p>
-            <p dangerouslySetInnerHTML={{__html:question}}></p>
+            <p dangerouslySetInnerHTML={{__html:question}}/>
             <div> 
                 {answers.map((answer)=>(
                     
