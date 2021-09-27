@@ -5,7 +5,7 @@ import { AnsewerObject } from "../App"
 // style
 import { ButtonWrapper, Wrapper } from "./QuiestionCard.style"
 type props = {
-     question: string;
+    question: string;
     answers:string[];
     callback:(e: React.MouseEvent<HTMLButtonElement>)=>void;
     userAnswer:AnsewerObject | undefined;

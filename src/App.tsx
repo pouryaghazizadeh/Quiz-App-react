@@ -1,10 +1,10 @@
 import { useState } from "react";
-// style
-import { GlobalStyle ,Wrapper } from "./App.style";
 import { Difficulty, fechQuizQuestions, QuestionState } from "./API";
+// style
+import { GlobalStyle, Wrapper } from "./App.style";
 import QuiestionCard from "./components/QuiestionCard";
 
-
+// type
 export type AnsewerObject={
   question:string;
   answer:string;
@@ -12,15 +12,17 @@ export type AnsewerObject={
   correctAnswer:string
   
 }
+// 10 questions
 const TOTAL_QUESTIONS = 10
 
 function App() {
+
 console.log(fechQuizQuestions(TOTAL_QUESTIONS,Difficulty.EASY));
 
 
 
 
-
+// loading for
 const [loading,setLoading]=useState(false)
 const [questions,setQuestions]=useState<QuestionState[]>([])
 const[number,setNumber]=useState(0)
@@ -34,10 +36,10 @@ const[gameOver,setGAmeOver]=useState(true)
 
   const startTrivia = async()=>{
     setLoading(true)
-setGAmeOver(false)
-const newQestions = await fechQuizQuestions(
-  TOTAL_QUESTIONS,
-  Difficulty.EASY
+    setGAmeOver(false)
+    const newQestions = await fechQuizQuestions(
+    TOTAL_QUESTIONS,
+    Difficulty.EASY
 )
   setQuestions(newQestions)
   setScore(0)
@@ -45,6 +47,7 @@ const newQestions = await fechQuizQuestions(
   setNumber(0)
   setLoading(false)
   }
+
   const checkAnswer =(e: React.MouseEvent<HTMLButtonElement>)=>{
     if(!gameOver){
       // userAnsers
