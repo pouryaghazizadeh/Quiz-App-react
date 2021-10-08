@@ -1,6 +1,6 @@
 import styled ,{createGlobalStyle} from "styled-components"
 
-// const BGImg = st
+
 
 
 export const GlobalStyle = createGlobalStyle`

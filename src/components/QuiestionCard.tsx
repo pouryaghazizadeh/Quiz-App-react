@@ -18,9 +18,9 @@ const QuiestionCard:React.FC<props> =({question,answers,callback,userAnswer,ques
     return (
         <Wrapper>
             <p className="number">
-            Question:  {questionNr}/{totalQuestions}
+            Question:  {questionNr} / {totalQuestions}
             </p>
-            <p dangerouslySetInnerHTML={{__html:question}}/>
+            <p dangerouslySetInnerHTML={{ __html: question }}/>
             <div> 
                 {answers.map((answer)=>(
                     
@@ -30,7 +30,7 @@ const QuiestionCard:React.FC<props> =({question,answers,callback,userAnswer,ques
                       userClicked={userAnswer?.answer === answer}
                      >
                         {/* with !! useranswer convert to boolean */}
-                        <button disabled={!!userAnswer} value={answer} onClick={callback}>
+                        <button disabled={!!userAnswer?true:false} value={answer} onClick={callback}>
                             <span dangerouslySetInnerHTML={{__html:answer}}/>
                         </button>
                     </ButtonWrapper>
